@@ -41,6 +41,7 @@ Implementações que vão além do mínimo pedido no PDF e reforçam governança
 - **KPIs** (total, em transporte, atrasadas) e filtros avançados no monitoramento
 - **Skeletons** de loading, delay simulado de **600 ms** no MSW e toasts
 - **Redux Saga** para resetar transporte ao trocar cliente no rascunho da OV
+- **CI/CD** entrega continua configurada na vercel
 
 ---
 
