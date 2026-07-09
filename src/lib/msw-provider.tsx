@@ -8,20 +8,19 @@ async function startWorkerOnce() {
   if (!workerStartPromise) {
     workerStartPromise = (async () => {
       const { worker } = await import("@/mocks/browser");
-      await worker.start({ onUnhandledRequest: "bypass" });
+      await worker.start({
+        onUnhandledRequest: "bypass",
+        serviceWorker: { url: "/mockServiceWorker.js" },
+      });
     })();
   }
   return workerStartPromise;
 }
 
 export function MswProvider({ children }: { children: React.ReactNode }) {
-  const [ready, setReady] = useState(process.env.NODE_ENV !== "development");
+  const [ready, setReady] = useState(false);
 
   useEffect(() => {
-    if (process.env.NODE_ENV !== "development") {
-      return;
-    }
-
     let cancelled = false;
 
     void startWorkerOnce()

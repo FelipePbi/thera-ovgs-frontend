@@ -82,7 +82,7 @@ Transições fora da sequência são rejeitadas na UI e no MSW (`409`).
 | Axios | Cliente HTTP (`baseURL: /api`) |
 | Zod (+ React Hook Form em login/cadastros) | Validação; criação de OV usa Redux + Zod |
 | Tailwind CSS + shadcn/ui | UI |
-| MSW `2` | API mock em desenvolvimento |
+| MSW `2` | API mock no browser (dev e produção/Vercel) |
 | Jest + Testing Library | Testes unitários/integração |
 
 ---
@@ -157,6 +157,8 @@ Prefixo: `/api`. Em geral exige `Authorization: Bearer <token>` (exceto `POST /a
 
 Filtros de `GET /orders`: `status`, `clientId`, `transportTypeId`, `scheduledDateFrom`, `scheduledDateTo`, `page`, `limit`.
 
+O `MswProvider` inicia o Service Worker no browser em **qualquer ambiente** (incluindo Vercel / `next start`), usando `public/mockServiceWorker.js`. Sem isso, as chamadas `/api/*` retornariam 404 no host Next.js.
+
 Para apontar a um backend real no futuro: desligar o MSW em `MswProvider` e configurar o `baseURL` em `src/lib/api.ts`.
 
 ---
@@ -186,7 +188,7 @@ Acesse [http://localhost:3000](http://localhost:3000).
 | Usuário | `teste` |
 | Senha | `123456` |
 
-O MSW sobe automaticamente em `development` e injeta seeds (clientes, transportes, itens, pedidos e logs).
+O MSW sobe automaticamente no browser (dev, `next start` e deploy na Vercel) e injeta seeds (clientes, transportes, itens, pedidos e logs).
 
 ### Scripts
 
@@ -194,7 +196,7 @@ O MSW sobe automaticamente em `development` e injeta seeds (clientes, transporte
 | --- | --- |
 | `npm run dev` | Desenvolvimento (com MSW) |
 | `npm run build` | Build de produção |
-| `npm run start` | Serve o build (**sem MSW** — precisa de API real) |
+| `npm run start` | Serve o build (com MSW no browser) |
 | `npm run lint` | ESLint |
 | `npm run test` | Jest |
 | `npm run test:watch` | Jest em watch mode |
@@ -236,7 +238,7 @@ npm run test
 - Listagens usam `limit: 50` fixo (API já aceita paginação)
 - Sidebar oculta em mobile (`md+`)
 - Sem integridade referencial rígida ao excluir cadastros referenciados
-- `npm run start` sem backend real falha nas chamadas `/api`
+- Persistência só no Service Worker da sessão: refresh restaura seeds; não há backend compartilhado entre usuários
 
 ---
 
