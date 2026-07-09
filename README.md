@@ -1,8 +1,13 @@
-# OVGS — Sistema de Gestão de Ordens de Venda (Frontend)
+# Sistema de Gestão de Ordens de Venda (Frontend)
 
 Solução frontend do desafio técnico **Thera - OVGS**, focada no ciclo de vida operacional de Ordens de Venda (OVs): cadastros, criação, acompanhamento, agendamento, monitoramento e auditoria.
 
 > Este repositório cobre o perfil **Front-end**. A API, a persistência e parte das regras de domínio são **simuladas em memória** com [Mock Service Worker (MSW)](#api-mockada-msw).
+
+
+### Screenshots
+
+![Monitor-Hashtags-Approved](https://github.com/FelipePbi/thera-ovgs-frontend/blob/master/images/image.PNG)
 
 ---
 
