@@ -7,7 +7,7 @@ Solução frontend do desafio técnico **Thera - OVGS**, focada no ciclo de vida
 
 ### Screenshots
 
-![Monitor-Hashtags-Approved](https://github.com/FelipePbi/thera-ovgs-frontend/blob/master/images/image.PNG)
+![Monitoramento](https://github.com/FelipePbi/thera-ovgs-frontend/blob/main/images/image.png)
 
 ---
 
